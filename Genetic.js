@@ -57,11 +57,14 @@ function Genetic(spawnPoint, goal) {
             this.frame += 1;
         }
         else {
-            this.eval();
-            this.nextGeneration();
+
+            this.init(this.agentsLen, this.obsLen);
+
+            //this.eval();
+            //this.nextGeneration();
 
 
-            //this.frame = 0; //reset frames and begin simulation on new population
+            this.frame = 0; //reset frames and begin simulation on new population
         }
     }
 
@@ -96,7 +99,7 @@ function Genetic(spawnPoint, goal) {
 
         var bestPool = weightedPop.slice(0, 10);//top 10 best Agents in the current population
 
-        
+
 
         console.log(bestPool);
 
