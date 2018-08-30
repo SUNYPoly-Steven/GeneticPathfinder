@@ -6,7 +6,7 @@ function Genetic(spawnPoint, goal) {
     this.spawnPoint = spawnPoint;
     this.goal = new Obstacle(goal.x - 10, goal.y - 10, 20, 20);
     this.frame = 0;
-    this.dnaLen = 1000;
+    this.dnaLen = 100;
 
     this.init = function(agentsSize, obsSize) {
 
@@ -17,8 +17,7 @@ function Genetic(spawnPoint, goal) {
             this.obs[i] = new Obstacle(random(0, width), 
                                        random(0, height), 
                                        random(0, 100), 
-                                       random(0, 100)
-                                      );
+                                       random(0, 100));
         }
 
         for (var i = 0; i < this.agentsLen; ++i) {
@@ -26,7 +25,7 @@ function Genetic(spawnPoint, goal) {
             this.agents[i].init(this.dnaLen);
             this.agents[i].pos = this.spawnPoint.copy();
         }
-        
+
     }
 
     this.applyForce = function() {
@@ -91,9 +90,15 @@ function Genetic(spawnPoint, goal) {
     this.nextGeneration = function() {
         //use the agents fitness to  randomly select (with bias) 
         //the agents to breed and make the next generation
-        var weightedPop = this.agents;
-        weightedPop.sort(function(left, right) { return left.fitness - right.fitness; });
-        console.log(weightedPop);
+        var weightedPop = Array.from(this.agents);
+        weightedPop.sort(function(left, right) { return right.fitness - left.fitness; });
+        //weightedPop is a array of the population that is sorted from most fit to least fit
+
+        var bestPool = weightedPop.slice(0, 10);//top 10 best Agents in the current population
+
+        
+
+        console.log(bestPool);
 
     }
 

@@ -55,8 +55,11 @@ function Agent() {
         }
         else {
             var d2g = dist(this.pos.x, this.pos.y, goal.pos.x, goal.pos.y);
+            //console.log(d2g);
             this.fitness = 1.0 / (d2g * d2g);
         }
+
+        //console.log("Fitness: " + this.fitness);
     }
 
     //this will return true if the agent is out of bounds (oob)
